@@ -40,6 +40,21 @@ declare module "@mui/material/OverridableComponent" {
 	}
 }
 
+declare module "@mui/material/AccordionSummary" {
+	interface AccordionSummaryOwnProps {
+		/**
+		 * The placement of the expander icon.
+		 *
+		 * - `"auto"`: Expander icon is placed to the left when wide, and to the right when narrow.
+		 * - `"start"`: Forces expander icon to the left.
+		 * - `"end"`: Forces expander icon to the right.
+		 *
+		 * @default 'auto'
+		 */
+		markerPlacement?: "auto" | "start" | "end";
+	}
+}
+
 declare module "@mui/material/Alert" {
 	interface AlertPropsVariantOverrides {
 		standard: false;
