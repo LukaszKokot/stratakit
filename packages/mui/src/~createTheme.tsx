@@ -14,7 +14,12 @@ import {
 	MuiAccordionSummary,
 } from "./~components/MuiAccordion.js";
 import { MuiAlert, MuiAlertTitle } from "./~components/MuiAlert.js";
-import { MuiAutocomplete } from "./~components/MuiAutocomplete.js";
+import {
+	MuiAutocomplete,
+	MuiAutocompleteChip,
+	MuiAutocompleteChipDeleteIcon,
+	MuiAutocompleteClearIndicator,
+} from "./~components/MuiAutocomplete.js";
 import { MuiAvatarGroup } from "./~components/MuiAvatarGroup.js";
 import { MuiBadge } from "./~components/MuiBadge.js";
 import { MuiBottomNavigationAction } from "./~components/MuiBottomNavigation.js";
@@ -183,8 +188,11 @@ function createTheme() {
 						},
 						chip: {
 							size: "small",
+							component: MuiAutocompleteChip,
+							deleteIcon: <MuiAutocompleteChipDeleteIcon />,
 						},
 						clearIndicator: {
+							component: MuiAutocompleteClearIndicator,
 							tabIndex: 0, // make clear indicator focusable
 							size: "small",
 						},
