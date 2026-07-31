@@ -155,7 +155,7 @@
 	}
 }
 
-.MuiInputBase-root {
+.🥝MuiInput {
 	&:where(.Mui-disabled) {
 		border-color: GrayText;
 	}

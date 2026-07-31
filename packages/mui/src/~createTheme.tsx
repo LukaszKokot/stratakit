@@ -54,12 +54,14 @@ import { MuiToggleButton } from "./~components/MuiToggleButton.js";
 import { MuiTooltipPopper } from "./~components/MuiTooltip.js";
 import { MuiTypography, variantMapping } from "./~components/MuiTypography.js";
 import {
+	CalendarIcon,
 	CaretsUpDownIcon,
 	ChevronDownIcon,
 	ChevronLeftDoubleIcon,
 	ChevronLeftIcon,
 	ChevronRightDoubleIcon,
 	ChevronRightIcon,
+	ClockIcon,
 	DismissIcon,
 	ErrorIcon,
 	InfoIcon,
@@ -342,6 +344,18 @@ function createTheme(args: CreateThemeArgs) {
 				},
 			},
 			MuiContainer: { defaultProps: { component: Role.div } },
+			MuiDatePicker: {
+				defaultProps: {
+					slots: {
+						openPickerIcon: CalendarIcon,
+					},
+					slotProps: {
+						openPickerButton: {
+							size: "small",
+						},
+					},
+				},
+			},
 			MuiDialog: {
 				defaultProps: {
 					component: Role.div,
@@ -390,6 +404,11 @@ function createTheme(args: CreateThemeArgs) {
 			},
 			MuiImageList: { defaultProps: { component: Role.ul } },
 			MuiImageListItem: { defaultProps: { component: Role.li } },
+			MuiInputBase: {
+				defaultProps: {
+					className: "🥝MuiInput",
+				},
+			},
 			MuiInputAdornment: { defaultProps: { component: Role.div } },
 			MuiInputLabel: {
 				defaultProps: {
@@ -435,6 +454,9 @@ function createTheme(args: CreateThemeArgs) {
 			MuiModal: { defaultProps: { component: Role.div, container } },
 			MuiOutlinedInput: {
 				defaultProps: {
+					classes: {
+						root: "🥝MuiInput",
+					},
 					notched: false, // Removes masked border from Select
 				},
 			},
@@ -452,6 +474,11 @@ function createTheme(args: CreateThemeArgs) {
 				},
 			},
 			MuiPaper: { defaultProps: { component: Role.div } },
+			MuiPickersInputBase: {
+				defaultProps: {
+					className: "🥝MuiInput",
+				},
+			},
 			MuiPopover: {
 				defaultProps: {
 					component: Role.div,
@@ -592,6 +619,18 @@ function createTheme(args: CreateThemeArgs) {
 				},
 			},
 			MuiTextField: { defaultProps: { component: Role.div } },
+			MuiTimePicker: {
+				defaultProps: {
+					slots: {
+						openPickerIcon: ClockIcon,
+					},
+					slotProps: {
+						openPickerButton: {
+							size: "small",
+						},
+					},
+				},
+			},
 			MuiToggleButton: { defaultProps: { component: MuiToggleButton } },
 			MuiToolbar: { defaultProps: { component: Role.div } },
 			MuiTooltip: {
