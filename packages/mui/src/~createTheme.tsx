@@ -335,6 +335,12 @@ function createTheme(args: CreateThemeArgs) {
 					},
 				},
 			},
+			MuiCircularProgress: {
+				defaultProps: {
+					enableTrackSlot: true,
+					thickness: 5,
+				},
+			},
 			MuiContainer: { defaultProps: { component: Role.div } },
 			MuiDialog: {
 				defaultProps: {
