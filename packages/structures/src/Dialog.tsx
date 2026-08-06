@@ -11,10 +11,10 @@ import { useStoreState } from "@ariakit/react/store";
 import { IconButton, Text } from "@stratakit/bricks";
 import { GhostAligner } from "@stratakit/bricks/secret-internals";
 import {
-	forwardRef,
 	usePopoverApi,
-	useUnreactiveCallback,
-} from "@stratakit/foundations/secret-internals";
+	useStableCallback,
+} from "@stratakit/internal-utils/hooks";
+import { forwardRef } from "@stratakit/internal-utils/react";
 import cx from "classnames";
 import { Dismiss } from "./~utils.icons.js";
 import { useInit } from "./~utils.useInit.js";
@@ -22,7 +22,7 @@ import { useInit } from "./~utils.useInit.js";
 import type {
 	BaseProps,
 	FocusableProps,
-} from "@stratakit/foundations/secret-internals";
+} from "@stratakit/internal-utils/props";
 
 // ----------------------------------------------------------------------------
 
@@ -121,7 +121,7 @@ function DialogWrapper(props: DialogWrapperProps) {
 	const open = useStoreState(store, (state) => {
 		return props.open ?? state?.open;
 	});
-	const setOpen = useUnreactiveCallback(store?.setOpen);
+	const setOpen = useStableCallback(store?.setOpen);
 
 	const popoverProps = usePopoverApi({
 		element: wrapper,

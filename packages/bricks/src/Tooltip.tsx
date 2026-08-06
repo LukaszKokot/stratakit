@@ -7,16 +7,16 @@ import * as React from "react";
 import { useStoreState } from "@ariakit/react/store";
 import * as AkTooltip from "@ariakit/react/tooltip";
 import {
-	forwardRef,
 	useEventHandlers,
 	usePopoverApi,
-	useUnreactiveCallback,
-} from "@stratakit/foundations/secret-internals";
+	useStableCallback,
+} from "@stratakit/internal-utils/hooks";
+import { forwardRef } from "@stratakit/internal-utils/react";
 import cx from "classnames";
 import { useInit } from "./~utils.useInit.js";
 import { TooltipContext } from "./Tooltip.internal.js";
 
-import type { FocusableProps } from "@stratakit/foundations/secret-internals";
+import type { FocusableProps } from "@stratakit/internal-utils/props";
 
 interface TooltipProps
 	extends Omit<FocusableProps<"div">, "content">,
@@ -101,7 +101,7 @@ const Tooltip = forwardRef<"div", TooltipProps>((props, forwardedRef) => {
 	const store = AkTooltip.useTooltipStore();
 	const open = useStoreState(store, "open");
 	const popoverElement = useStoreState(store, "popoverElement");
-	const setOpen = useUnreactiveCallback(store.setOpen);
+	const setOpen = useStableCallback(store.setOpen);
 
 	const popoverProps = usePopoverApi({
 		element: popoverElement,
