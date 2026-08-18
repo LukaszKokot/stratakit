@@ -406,7 +406,7 @@ function createTheme(args: CreateThemeArgs) {
 			MuiImageListItem: { defaultProps: { component: Role.li } },
 			MuiInputBase: {
 				defaultProps: {
-					className: "🥝MuiInput",
+					classes: { root: "🥝MuiInput" },
 				},
 			},
 			MuiInputAdornment: { defaultProps: { component: Role.div } },
