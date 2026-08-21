@@ -16,6 +16,8 @@ import type { CheckboxProps } from "@mui/material/Checkbox";
 import type { FormControlProps } from "@mui/material/FormControl";
 import type { IconProps } from "@mui/material/Icon";
 import type { IconButtonProps } from "@mui/material/IconButton";
+import type { InputProps } from "@mui/material/Input";
+import type { InputBaseProps } from "@mui/material/InputBase";
 import type {
 	CommonProps,
 	DefaultComponentProps,
@@ -563,14 +565,48 @@ declare module "@mui/material/IconButton" {
 	}
 }
 
+declare module "@mui/material/Input" {
+	interface InputProps {
+		/** @deprecated StrataKit does not support this prop. */
+		disableUnderline?: InputProps["disableUnderline"];
+	}
+
+	// @ts-expect-error -- Default exports cannot be augmented, but the prop deprecations still take effect.
+	export default function Input(
+		props: Omit<InputProps, keyof InputDeprecatedProps> & InputDeprecatedProps,
+	): React.JSX.Element;
+}
+
+interface InputDeprecatedProps extends InputBaseDeprecatedProps {
+	/** @deprecated StrataKit does not support this prop. */
+	disableUnderline?: InputProps["disableUnderline"];
+}
+
 declare module "@mui/material/InputBase" {
 	interface InputBasePropsColorOverrides {
+		primary: false;
 		secondary: false;
 		info: false;
 		success: false;
 		warning: false;
 		error: false;
 	}
+
+	interface InputBaseProps {
+		/** @deprecated StrataKit does not support this prop. */
+		color?: InputBaseProps["color"];
+
+		/** @deprecated StrataKit does not support this prop. */
+		disableInjectingGlobalStyles?: InputBaseProps["disableInjectingGlobalStyles"];
+	}
+}
+
+interface InputBaseDeprecatedProps {
+	/** @deprecated StrataKit does not support this prop. */
+	color?: InputBaseProps["color"];
+
+	/** @deprecated StrataKit does not support this prop. */
+	disableInjectingGlobalStyles?: InputBaseProps["disableInjectingGlobalStyles"];
 }
 
 declare module "@mui/material/Link" {
@@ -590,6 +626,21 @@ declare module "@mui/material/MenuItem" {
 	interface MenuItemOwnProps {
 		LinkComponent?: never;
 	}
+}
+declare module "@mui/material/NativeSelect" {
+	interface NativeSelectProps {
+		/** @deprecated StrataKit does not support this prop. */
+		variant?: NativeSelectProps["variant"];
+	}
+
+	// @ts-expect-error -- Default exports cannot be augmented, but the prop deprecations still take effect.
+	export default function NativeSelect(
+		props: {
+			/** @deprecated StrataKit does not support this prop. */
+			variant?: NativeSelectProps["variant"];
+		} & Omit<NativeSelectProps, "variant" | keyof InputDeprecatedProps> &
+			InputDeprecatedProps,
+	): React.JSX.Element;
 }
 
 declare module "@mui/material/PaginationItem" {
