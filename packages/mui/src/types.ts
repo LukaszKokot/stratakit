@@ -770,7 +770,11 @@ declare module "@mui/material/Menu" {
 }
 
 declare module "@mui/material/MenuItem" {
-	interface MenuItemOwnProps {
+	interface MenuItemOwnProps extends ButtonBaseDeprecatedProps {
+		/** @deprecated StrataKit does not support this prop. */
+		dense?: MenuItemOwnProps["dense"];
+		/** @deprecated StrataKit does not support this prop. */
+		focusVisibleClassName?: string;
 		LinkComponent?: never;
 	}
 }
@@ -869,6 +873,9 @@ declare module "@mui/material/Radio" {
 
 		/** @deprecated StrataKit does not support this prop. */
 		disableRipple?: boolean;
+
+		/** @deprecated StrataKit does not support this prop. */
+		disableFocusRipple?: boolean;
 
 		/** @deprecated StrataKit does not support this prop. */
 		disableTouchRipple?: boolean;
