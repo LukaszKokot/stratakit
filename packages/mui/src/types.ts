@@ -887,8 +887,11 @@ declare module "@mui/material/StepButton" {
 }
 
 declare module "@mui/material/Tab" {
-	interface TabOwnProps {
+	interface TabOwnProps extends ButtonBaseDeprecatedProps {
 		LinkComponent?: never;
+
+		/** @deprecated StrataKit does not support this prop. */
+		disableFocusRipple?: TabProps["disableFocusRipple"];
 
 		/**
 		 * The default icon position with `@stratakit/mui` is `"start"`.
