@@ -36,10 +36,7 @@ import type { SwitchProps } from "@mui/material/Switch";
 import type { TabProps } from "@mui/material/Tab";
 import type { TableCellProps as MuiTableCellProps } from "@mui/material/TableCell";
 import type { TabsProps } from "@mui/material/Tabs";
-import type {
-	TextFieldProps,
-	TextFieldVariants,
-} from "@mui/material/TextField";
+import type { TextFieldProps } from "@mui/material/TextField";
 import type { ToggleButtonProps } from "@mui/material/ToggleButton";
 import type { TooltipProps } from "@mui/material/Tooltip";
 import type {
@@ -577,6 +574,17 @@ declare module "@mui/material/FormControl" {
 	}
 }
 
+interface FormControlDeprecatedProps {
+	/** @deprecated StrataKit does not support this prop. */
+	color?: FormControlProps["color"];
+	/** @deprecated StrataKit does not support this prop. */
+	focused?: FormControlProps["focused"];
+	/** @deprecated StrataKit does not support this prop. */
+	hiddenLabel?: FormControlProps["hiddenLabel"];
+	/** @deprecated StrataKit does not support this prop. */
+	variant?: FormControlProps["variant"];
+}
+
 declare module "@mui/material/FormLabel" {
 	interface FormLabelPropsColorOverrides {
 		secondary: false;
@@ -985,9 +993,10 @@ declare module "@mui/material/TextField" {
 	}
 
 	export default function TextField(
-		props: {
-			/** @deprecated StrataKit does not support this prop. */ variant?: TextFieldVariants;
-		} & Omit<TextFieldProps, "variant">,
+		props: FormControlDeprecatedProps & {
+			/** @deprecated StrataKit does not support this prop. */
+			select?: TextFieldProps["select"];
+		} & Omit<TextFieldProps, "select" | keyof FormControlDeprecatedProps>,
 	): React.JSX.Element;
 }
 
