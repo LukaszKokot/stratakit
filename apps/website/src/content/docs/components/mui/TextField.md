@@ -24,6 +24,7 @@ Make sure the **TextField** is suitable for your use case. There may be other, m
 Modifications to `FormControl` (applies to all MUI components that extend `FormControl`):
 
 - The `color`, `focused`, `hiddenLabel` and `variant` props are not supported.
+- The `margin` prop is not supported. Use CSS grid, CSS flexbox, [`Grid`](https://mui.com/material-ui/react-grid/) , or [`Stack`](https://mui.com/material-ui/react-stack/) to handle spacing between form controls.
 
 Modifications specific to `TextField`:
 
