@@ -502,6 +502,8 @@ declare module "@mui/material/Dialog" {
 	interface DialogProps extends Pick<CommonProps, "render"> {
 		/** @deprecated Use `render` prop instead. */
 		component?: React.ElementType;
+		/** @deprecated StrataKit does not support this prop. */
+		PaperComponent?: DialogProps["PaperComponent"];
 	}
 }
 
