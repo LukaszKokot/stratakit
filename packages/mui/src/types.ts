@@ -10,6 +10,7 @@
 import type { RoleProps } from "@ariakit/react/role";
 import type { AlertProps } from "@mui/material/Alert";
 import type { BadgeProps } from "@mui/material/Badge";
+import type { ButtonBaseProps } from "@mui/material/ButtonBase";
 import type { IconProps } from "@mui/material/Icon";
 import type { IconButtonProps } from "@mui/material/IconButton";
 import type {
@@ -25,6 +26,7 @@ import type {
 	TextFieldProps,
 	TextFieldVariants,
 } from "@mui/material/TextField";
+import type { ToggleButtonProps } from "@mui/material/ToggleButton";
 import type { TooltipProps } from "@mui/material/Tooltip";
 import type {
 	TypographyProps,
@@ -172,9 +174,56 @@ declare module "@mui/material/Badge" {
 
 declare module "@mui/material/ButtonBase" {
 	interface ButtonBaseOwnProps {
+		/** @deprecated Use `ref` instead. */
+		action?: ButtonBaseOwnProps["action"];
+
+		/** @deprecated StrataKit does not support this prop. */
+		centerRipple?: ButtonBaseOwnProps["centerRipple"];
+
+		/** @deprecated StrataKit does not support this prop. */
+		disableRipple?: ButtonBaseOwnProps["disableRipple"];
+
+		/** @deprecated StrataKit does not support this prop. */
+		disableTouchRipple?: ButtonBaseOwnProps["disableTouchRipple"];
+
+		/** @deprecated StrataKit does not support this prop. */
+		focusRipple?: ButtonBaseOwnProps["focusRipple"];
+
 		/** @deprecated Use the `render` prop instead. */
-		LinkComponent?: React.ElementType;
+		LinkComponent?: ButtonBaseOwnProps["LinkComponent"];
+
+		/** @deprecated StrataKit does not support this prop. */
+		TouchRippleProps?: ButtonBaseOwnProps["TouchRippleProps"];
+
+		/** @deprecated StrataKit does not support this prop. */
+		touchRippleRef?: ButtonBaseOwnProps["touchRippleRef"];
 	}
+}
+
+interface ButtonBaseDeprecatedProps {
+	/** @deprecated Use `ref` prop instead. */
+	action?: ButtonBaseProps["action"];
+
+	/** @deprecated StrataKit does not support this prop. */
+	centerRipple?: ButtonBaseProps["centerRipple"];
+
+	/** @deprecated StrataKit does not support this prop. */
+	disableRipple?: ButtonBaseProps["disableRipple"];
+
+	/** @deprecated StrataKit does not support this prop. */
+	disableTouchRipple?: ButtonBaseProps["disableTouchRipple"];
+
+	/** @deprecated StrataKit does not support this prop. */
+	focusRipple?: ButtonBaseProps["focusRipple"];
+
+	/** @deprecated Use the `render` prop instead. */
+	LinkComponent?: ButtonBaseProps["LinkComponent"];
+
+	/** @deprecated StrataKit does not support this prop. */
+	TouchRippleProps?: ButtonBaseProps["TouchRippleProps"];
+
+	/** @deprecated StrataKit does not support this prop. */
+	touchRippleRef?: ButtonBaseProps["touchRippleRef"];
 }
 
 declare module "@mui/material/Button" {
@@ -523,7 +572,26 @@ declare module "@mui/material/TextField" {
 }
 
 declare module "@mui/material/ToggleButton" {
-	interface ToggleButtonOwnProps {
+	interface ToggleButtonPropsColorOverrides {
+		error: false;
+		info: false;
+		primary: false;
+		secondary: false;
+		success: false;
+		warning: false;
+	}
+
+	interface ToggleButtonOwnProps extends ButtonBaseDeprecatedProps {
+		/** @deprecated `color` is unnecessary. Only `"standard"` is supported and already the default. */
+		color?: ToggleButtonProps["color"];
+
+		/** @deprecated StrataKit does not support this prop. */
+		disableFocusRipple?: ToggleButtonProps["disableFocusRipple"];
+
+		/** @deprecated StrataKit does not support this prop. */
+		fullWidth?: ToggleButtonProps["fullWidth"];
+
+		/** @deprecated Use the `render` prop instead. */
 		LinkComponent?: never;
 
 		/**
@@ -539,6 +607,22 @@ declare module "@mui/material/ToggleButton" {
 		 * @default 'top'
 		 */
 		labelPlacement?: TooltipProps["placement"];
+	}
+}
+
+declare module "@mui/material/ToggleButtonGroup" {
+	interface ToggleButtonGroupPropsColorOverrides {
+		error: false;
+		info: false;
+		primary: false;
+		secondary: false;
+		success: false;
+		warning: false;
+	}
+
+	interface ToggleButtonGroupProps {
+		/** @deprecated `color` is unnecessary. Only `"standard"` is supported and already the default. */
+		color?: ToggleButtonGroupProps["color"];
 	}
 }
 
