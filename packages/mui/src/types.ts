@@ -17,6 +17,7 @@ import type { ButtonGroupProps } from "@mui/material/ButtonGroup";
 import type { CardProps } from "@mui/material/Card";
 import type { CheckboxProps } from "@mui/material/Checkbox";
 import type { CssBaselineProps } from "@mui/material/CssBaseline";
+import type { DrawerProps } from "@mui/material/Drawer";
 import type { FilledInputProps } from "@mui/material/FilledInput";
 import type { FormControlProps } from "@mui/material/FormControl";
 import type { FormLabelProps } from "@mui/material/FormLabel";
@@ -554,6 +555,16 @@ declare module "@mui/material/DialogContent" {
 	}
 }
 
+declare module "@mui/material/Drawer" {
+	interface DrawerProps {
+		/** @deprecated StrataKit does not support this prop. */
+		elevation?: DrawerProps["elevation"];
+
+		/** @deprecated StrataKit does not support this prop. */
+		hideBackdrop?: boolean;
+	}
+}
+
 declare module "@mui/material/Divider" {
 	interface DividerOwnProps {
 		/** Add a 1x margin before and after the divider */
@@ -1061,6 +1072,16 @@ declare module "@mui/material/SvgIcon" {
 	export default function SvgIcon(
 		props: SvgIconProps,
 	): React.JSX.Element | null;
+}
+
+declare module "@mui/material/SwipeableDrawer" {
+	interface SwipeableDrawerProps {
+		/** @deprecated StrataKit does not support this prop. */
+		elevation?: DrawerProps["elevation"];
+
+		/** @deprecated StrataKit does not support this prop. */
+		hideBackdrop?: boolean;
+	}
 }
 
 declare module "@mui/material/Switch" {
