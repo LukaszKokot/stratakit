@@ -4,6 +4,9 @@ packages:
   - internal
   - examples
 
+overrides:
+  browserslist: 4.28.7
+
 catalog:
   "@mui/material": ^9.4.0
   "@mui/utils": ^9.4.0
