@@ -33,7 +33,7 @@ jobs:
           echo "base_path=${{ inputs.base || 'commit/${GITHUB_SHA::7}' }}" >> "$GITHUB_OUTPUT"
 
       - name: Calculate base pathname (repo name with trailing slash)
-        uses: actions/github-script@v9
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9
         id: base_prefix
         with:
           result-encoding: string
@@ -41,7 +41,7 @@ jobs:
 
       - name: Print folders to preserve # (open PRs and "commit/" folder)
         id: preserve_folders
-        uses: actions/github-script@v9
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9
         with:
           result-encoding: string
           script: |
@@ -64,16 +64,16 @@ jobs:
       GH_PAGES_URL: ${{ vars.GH_PAGES_URL }}
 
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           fetch-depth: 0
 
-      - uses: pnpm/action-setup@v6
+      - uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6
         with:
           version: 11.18.0
 
       - name: Use Node 22.x
-        uses: actions/setup-node@v7
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
         with:
           node-version: 22.x
           cache: "pnpm"
@@ -84,7 +84,7 @@ jobs:
         run: pnpm run build
 
       - name: Deploy test-app build output to gh-pages branch
-        uses: JamesIves/github-pages-deploy-action@v4
+        uses: JamesIves/github-pages-deploy-action@fa24774553152dd7873cd16ebd8d959b010c5445 # v4
         with:
           branch: gh-pages
           folder: ${{ github.workspace }}/apps/test-app/build/client/${{ env.BASE_PREFIX }}${{ env.BASE_FOLDER }}
@@ -94,7 +94,7 @@ jobs:
           git-config-email: github-actions[bot]@users.noreply.github.com
 
       - name: Deploy docs website build output to gh-pages branch
-        uses: JamesIves/github-pages-deploy-action@v4
+        uses: JamesIves/github-pages-deploy-action@fa24774553152dd7873cd16ebd8d959b010c5445 # v4
         with:
           branch: gh-pages
           folder: ${{ github.workspace }}/apps/website/dist
@@ -105,7 +105,7 @@ jobs:
 
       - name: Add deploy preview link under Checks
         if: github.event_name == 'pull_request'
-        uses: actions/github-script@v9
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9
         with:
           script: |
             github.rest.repos.createCommitStatus({
