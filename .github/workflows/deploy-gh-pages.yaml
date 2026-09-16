@@ -37,7 +37,13 @@ jobs:
         id: base_prefix
         with:
           result-encoding: string
-          script: return new URL("${{ vars.GH_PAGES_URL }}").pathname.replace(/^\/|\/$/g, "") + "/";
+          script: |
+            try {
+              const ghPagesUrl = '${{ vars.GH_PAGES_URL }}';
+              return new URL(ghPagesUrl).pathname.replace(/^\/|\/$/g, '') + '/';
+            } catch {
+              return '';
+            }
 
       - name: Print folders to preserve # (open PRs and "commit/" folder)
         id: preserve_folders
