@@ -18,6 +18,9 @@ catalog:
   react-dom: ^19.2.8
   typescript: ~7.0.2
 
+overrides:
+  browserslist: 4.28.7
+
 minimumReleaseAgeStrict: true
 
 minimumReleaseAgeExclude:
