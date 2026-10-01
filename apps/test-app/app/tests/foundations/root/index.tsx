@@ -10,6 +10,8 @@ import { Root } from "@stratakit/foundations";
 import { DropdownMenu } from "@stratakit/structures";
 import { definePage, useColorScheme } from "~/~utils.tsx";
 
+import type { VariantProps } from "~/~utils.tsx";
+
 export const handle = { title: "Root", rootTest: true };
 
 export default definePage(
@@ -91,7 +93,7 @@ function LightAndShadowComponents() {
 
 // ----------------------------------------------------------------------------
 
-function ConditionalRenderingTest() {
+function ConditionalRenderingTest({ secondRoot }: VariantProps) {
 	const [host, setHost] = React.useState<HTMLElement | null>(null);
 	const [shouldRenderRoot, setShouldRenderRoot] = React.useState(true);
 	const shadow = useShadow(React.useCallback(() => host, [host]));
@@ -106,13 +108,18 @@ function ConditionalRenderingTest() {
 		<div ref={setHost}>
 			{shadow
 				? ReactDOM.createPortal(
-						shouldRenderRoot ? (
-							<Root colorScheme="dark" density="dense" rootNode={shadow}>
-								{button}
-							</Root>
-						) : (
-							button
-						),
+						<>
+							{secondRoot ? (
+								<Root colorScheme="dark" density="dense" rootNode={shadow} />
+							) : null}
+							{shouldRenderRoot ? (
+								<Root colorScheme="dark" density="dense" rootNode={shadow}>
+									{button}
+								</Root>
+							) : (
+								button
+							)}
+						</>,
 						shadow,
 					)
 				: null}

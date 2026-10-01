@@ -25,7 +25,7 @@ import {
 	spriteSheetId,
 	useRootNode,
 } from "./Root.internal.js";
-import { loadStyles } from "./styles.internal.js";
+import { loadResetLayer, loadStyles } from "./styles.internal.js";
 
 import type { BaseProps } from "@stratakit/internal-utils/props";
 
@@ -365,9 +365,7 @@ function Styles() {
 		/** Adds `@layer reset` _before_ all other styles to ensure correct layer order.  */
 		function addResetLayer() {
 			if (!rootNode) return;
-			const styleElement = document.createElement("style");
-			((rootNode as Document).head || rootNode).prepend(styleElement);
-			styleElement.textContent = "@layer reset;";
+			return loadResetLayer(rootNode);
 		},
 		[rootNode],
 	);

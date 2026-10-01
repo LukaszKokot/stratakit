@@ -7,6 +7,7 @@ import {
 	getOwnerDocument,
 	getWindow,
 	isBrowser,
+	isDocument,
 } from "@stratakit/internal-utils/dom";
 
 /**
@@ -86,6 +87,48 @@ export function loadStyles(
 	})();
 
 	return { loaded, cleanup };
+}
+
+// ----------------------------------------------------------------------------
+
+/**
+ * Maintains a single `@layer reset` style element per root node, along with
+ * the number of consumers using it.
+ */
+const resetLayers = new WeakMap<
+	Document | ShadowRoot,
+	{ styleElement: HTMLStyleElement; count: number }
+>();
+
+/**
+ * Adds `@layer reset` in a style element at the top of the root node, before all other styles.
+ *
+ * Returns a cleanup function, which removes the style element once the _last_ consumer cleans up.
+ */
+export function loadResetLayer(rootNode: Document | ShadowRoot) {
+	const ownerDocument = getOwnerDocument(rootNode);
+	if (!ownerDocument) return () => {};
+
+	let entry = resetLayers.get(rootNode);
+	if (!entry) {
+		const styleElement = ownerDocument.createElement("style");
+		styleElement.textContent = "@layer reset;";
+		entry = { styleElement, count: 0 };
+		resetLayers.set(rootNode, entry);
+	}
+
+	entry.count++;
+
+	// Re-prepend in case other styles were inserted before it since the first consumer.
+	(isDocument(rootNode) ? rootNode.head : rootNode).prepend(entry.styleElement);
+
+	return () => {
+		entry.count--;
+		if (entry.count === 0) {
+			entry.styleElement.remove();
+			resetLayers.delete(rootNode);
+		}
+	};
 }
 
 // ----------------------------------------------------------------------------
