@@ -18,6 +18,9 @@ catalog:
   react-dom: ^19.2.8
   typescript: ~7.0.2
 
+overrides:
+  devalue: 5.9.3
+
 minimumReleaseAgeStrict: true
 
 minimumReleaseAgeExclude:
